@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/check', 'Weixin\CheckController@valid');
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes

@@ -3,3 +3,12 @@
 Homestead.yaml
 Homestead.json
 .env
+.idea/
+*.swo
+*.swp
+*.swn
+*.DS_Store
+.project
+.buildpath
+.settings
+.metadata/
