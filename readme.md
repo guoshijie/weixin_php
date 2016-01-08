@@ -1,9 +1,9 @@
 ##项目简介
->这是一个微信公众平台开发示例,基于PHP框架Laravel5.2
->
+####这是一个微信公众平台开发示例,基于PHP框架Laravel5.2
 >- **IDE:** PhpStorm 9.0.2
 >- **PHP VERSION:** 5.6.7
 >- **DATABASE:** Mysql 
+>- **Author:** Steven Guo
 
 ##注意事项
 ####1.下载项目后将.env.example更名为.env
