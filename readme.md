@@ -7,6 +7,9 @@
 
 ##注意事项
 ####1.下载项目后将.env.example更名为.env
+```
+mv .env.example .env
+```
 
 ####2.给storage和bootstrap/cache目录赋予权限
 ```

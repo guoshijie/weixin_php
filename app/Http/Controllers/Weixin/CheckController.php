@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Log;
 
 /**
  * 与微信公众平台对接
- * @author        guoshijie
- * @version        v1.0
+ * @author        Steven Guo
+ * @version       v1.0
  */
 class CheckController extends Controller{
 

@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/check', 'Weixin\CheckController@valid');
+Route::get('/getAccessToken', 'Weixin\AccessController@getAccessToken');
 
 /*
 |--------------------------------------------------------------------------
