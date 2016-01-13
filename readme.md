@@ -5,6 +5,10 @@
 >- **DATABASE:** Mysql 
 >- **Author:** Steven Guo
 
+##包含功能
+####1.微信公众平台接入
+####2.获取AccessToken
+
 ##注意事项
 ####1.下载项目后将.env.example更名为.env
 ```
