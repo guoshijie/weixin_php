@@ -26,7 +26,7 @@ class CheckController extends Controller{
      * @param Request $request
      * @return array|string
      */
-    public function valid(Request $request){
+    public function valid(Request $request) {
         $reqUrl = $request->fullUrl();
         $method = $request->method();
         Log::info("$method $reqUrl");
@@ -39,12 +39,11 @@ class CheckController extends Controller{
         Log::info($input);
         if ($this->checkSignature($signature,$timestamp,$nonce)) {
             Log::info("connect with weixin success");
-
-            //获取POST数据包
-            $postXml = $request->getContent();;
-            Log::info($postXml);
-
-            return $echoStr;
+            if($method == 'GET'){
+                return $echoStr;
+            }
+            $respStr = $this->responseMsg($request);
+            return $respStr;
         }else{
             Log::info("connect with weixin failed");
         }
@@ -73,14 +72,16 @@ class CheckController extends Controller{
         }
     }
 
-    public function responseMsg(){
-        //get post data, May be due to the different environments
-        $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
+    /**
+     * @param Request $request
+     * @return null|string
+     */
+    public function responseMsg(Request $request){
+        //获取POST数据包
+        $postStr = $request->getContent();
+        Log::info($postStr);
 
-        //extract post data
         if (!empty($postStr)) {
-            /* libxml_disable_entity_loader is to prevent XML eXternal Entity Injection,
-               the best way is to check the validity of xml by yourself */
             libxml_disable_entity_loader(true);
             $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
             $fromUsername = $postObj->FromUserName;
@@ -99,14 +100,15 @@ class CheckController extends Controller{
                 $msgType = "text";
                 $contentStr = "Welcome to wechat world!";
                 $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-                echo $resultStr;
+                Log::info($resultStr);
+                return $resultStr;
             } else {
-                echo "Input something...";
+                Log::info("Input something...");
+                return null;
             }
-
         } else {
-            echo "";
-            exit;
+            Log::info("Post Xml data is null");
+            return null;
         }
     }
 
