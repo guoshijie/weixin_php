@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Weixin;
 
 use App\Http\Controllers\Controller;
+use App\Service\weixin\ResponseMsgService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Log;
 
 /**
@@ -12,9 +14,6 @@ use Illuminate\Support\Facades\Log;
  * @version       v1.0
  */
 class CheckController extends Controller{
-
-    public $wechatObj;
-    const TOKEN = "guoshijie";
 
     public function __construct(){
 
@@ -31,18 +30,10 @@ class CheckController extends Controller{
         Log::info("$method $reqUrl");
 
         $input = $request->all();
-        $signature = $request->input('signature');
-        $echoStr = $request->input('echostr');
-        $timestamp = $request->input('timestamp');
-        $nonce = $request->input('nonce');
         Log::info($input);
-        if ($this->checkSignature($signature,$timestamp,$nonce)) {
+        if ($this->checkSignature($request)) {
             Log::info("connect with weixin success");
-            if($method == 'GET'){
-                return $echoStr;
-            }
-            $respStr = $this->responseMsg($request);
-            return $respStr;
+            return $method == 'GET'? $request->input('echostr'):$this->switchRespMsg($request);
         }else{
             Log::info("connect with weixin failed");
         }
@@ -50,17 +41,19 @@ class CheckController extends Controller{
 
     /**
      * 验签
-     * @param $signature
-     * @param $timestamp
-     * @param $nonce
+     * @param Request $request
      * @return bool
      * @throws Exception
      */
-    private function checkSignature($signature,$timestamp,$nonce){
-        if (!self::TOKEN) {
-            throw new Exception('TOKEN is not defined!');
+    private function checkSignature(Request $request){
+        $signature = $request->input('signature');
+        $timestamp = $request->input('timestamp');
+        $nonce = $request->input('nonce');
+        $token = Config::get('constants.Token');
+        if (!$token) {
+            throw new Exception('Token is not defined!');
         }
-        $tmpArr = array(self::TOKEN, $timestamp, $nonce);
+        $tmpArr = array($token, $timestamp, $nonce);
         sort($tmpArr, SORT_STRING);
         $tmpStr = sha1(implode($tmpArr));
         Log::info("temStr==>".$tmpStr);
@@ -72,11 +65,11 @@ class CheckController extends Controller{
     }
 
     /**
-     * 回复文本类(text)消息
+     * 根据消息的类型，回复不同内容
      * @param Request $request
-     * @return null|string
+     * @return null
      */
-    public function responseMsg(Request $request){
+    public function switchRespMsg(Request $request){
         //获取POST数据包
         $postStr = $request->getContent();
         Log::info($postStr);
@@ -86,26 +79,19 @@ class CheckController extends Controller{
             $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
             $fromUsername = $postObj->FromUserName;
             $toUsername = $postObj->ToUserName;
-            $keyword = trim($postObj->Content);
-            $time = time();
-            $textTpl = "<xml>
-							<ToUserName><![CDATA[%s]]></ToUserName>
-							<FromUserName><![CDATA[%s]]></FromUserName>
-							<CreateTime>%s</CreateTime>
-							<MsgType><![CDATA[%s]]></MsgType>
-							<Content><![CDATA[%s]]></Content>
-							<FuncFlag>0</FuncFlag>
-							</xml>";
-            if (!empty($keyword)) {
-                $msgType = "text";
-                $contentStr = "Welcome to wechat world!";
-                $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-                Log::info($resultStr);
-                return $resultStr;
-            } else {
-                Log::info("Input something...");
-                return null;
+            $msgType = $postObj->MsgType;
+            $content = trim($postObj->Content);
+            if($msgType=="text"){
+                return ResponseMsgService::responseTextMsg($fromUsername,$toUsername,$content);
             }
+            if($msgType=="event"){
+                $event = $postObj->Event;
+                if($event=="subscribe"){
+                    $respStr = "您好,我是郭世杰，欢迎关注我的微信个人公众号";
+                    return ResponseMsgService::responseTextMsg($fromUsername,$toUsername,$respStr);
+                }
+            }
+            return null;
         } else {
             Log::info("Post Xml data is null");
             return null;
