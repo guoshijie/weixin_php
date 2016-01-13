@@ -11,12 +11,12 @@
 |
 */
 
-Route::get('/', function () {
+Route::any('/', function () {
     return view('welcome');
 });
 
-Route::get('/check', 'Weixin\CheckController@valid');
-Route::get('/getAccessToken', 'Weixin\AccessController@getAccessToken');
+Route::any('/check', 'Weixin\CheckController@valid');
+Route::any('/getAccessToken', 'Weixin\AccessController@getAccessToken');
 
 /*
 |--------------------------------------------------------------------------

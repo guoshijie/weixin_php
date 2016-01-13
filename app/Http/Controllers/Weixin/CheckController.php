@@ -27,6 +27,10 @@ class CheckController extends Controller{
      * @return array|string
      */
     public function valid(Request $request){
+        $reqUrl = $request->fullUrl();
+        $method = $request->method();
+        Log::info("$method $reqUrl");
+
         $input = $request->all();
         $signature = $request->input('signature');
         $echoStr = $request->input('echostr');
@@ -35,6 +39,11 @@ class CheckController extends Controller{
         Log::info($input);
         if ($this->checkSignature($signature,$timestamp,$nonce)) {
             Log::info("connect with weixin success");
+
+            //获取POST数据包
+            $postXml = $request->getContent();;
+            Log::info($postXml);
+
             return $echoStr;
         }else{
             Log::info("connect with weixin failed");
