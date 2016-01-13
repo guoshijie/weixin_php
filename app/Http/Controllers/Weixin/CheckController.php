@@ -13,12 +13,11 @@ use Illuminate\Support\Facades\Log;
  */
 class CheckController extends Controller{
 
-//    $wechatObj = new wechatCallbackapiTest();
     public $wechatObj;
     const TOKEN = "guoshijie";
 
     public function __construct(){
-//        $this->wechatObj = new wechatCallbackapiTest();
+
     }
 
     /**
@@ -73,6 +72,7 @@ class CheckController extends Controller{
     }
 
     /**
+     * 回复文本类(text)消息
      * @param Request $request
      * @return null|string
      */
