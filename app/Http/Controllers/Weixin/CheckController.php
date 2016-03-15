@@ -86,9 +86,14 @@ class CheckController extends Controller{
             }
             if($msgType=="event"){
                 $event = $postObj->Event;
+                Log::info("====event===".$event);
                 if($event=="subscribe"){
                     $respStr = "您好,我是郭世杰，欢迎关注我的微信个人公众号";
                     return ResponseMsgService::responseTextMsg($fromUsername,$toUsername,$respStr);
+                }
+                if($event=="CLICK"){
+                    $eventKey = $postObj->EventKey;
+                    return $this->responseMenuMsg($fromUsername, $toUsername, $eventKey);
                 }
             }
             return null;
@@ -96,6 +101,17 @@ class CheckController extends Controller{
             Log::info("Post Xml data is null");
             return null;
         }
+    }
+
+    //根据点击不同的菜单，回复不同消息
+    public function responseMenuMsg($fromUsername, $toUsername, $eventKey){
+        if($eventKey == "me"){
+            $respStr = "Hello, 我是郭世杰，2年JAVA开发经验。";
+            return ResponseMsgService::responseTextMsg($fromUsername,$toUsername,$respStr);
+        }else{
+
+        }
+        return null;
     }
 
 }

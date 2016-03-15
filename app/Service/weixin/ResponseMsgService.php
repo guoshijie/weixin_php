@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Log;
 
 class ResponseMsgService {
 
-
     /**
      * 回复文本类(text)消息
      * @param $fromUsername

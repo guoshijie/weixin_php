@@ -71,7 +71,7 @@ class MenuService {
                         array(
                             'name'=>urlencode("关于我"),
                             'type'=>'click',
-                            'key'=>'VCX_ABOUTME'
+                            'key'=>'me'
                         ),
                         array(
                             'name'=>urlencode("工作信息"),
