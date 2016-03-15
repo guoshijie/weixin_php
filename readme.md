@@ -41,7 +41,8 @@ git rm --cached filename
 ```
 
 ##小工具
-####在局域网内开发时，[ngrok](https://github.com/inconshreveable/ngrok)可以反向代理将内网端口映射到外网，生成一个临时域名，堪称调试神器
+####在局域网内开发时，[ngrok](https://github.com/inconshreveable/ngrok)可以反向代理将内网端口映射到外网，生成一个临时域名
 ```
 git clone git@github.com:inconshreveable/ngrok.git
+
 ```
