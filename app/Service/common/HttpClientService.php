@@ -16,17 +16,20 @@ class HttpClientService {
      * curl模拟post请求，使用json格式
      * @param $url
      * @param $param
+     * @param bool $isJson
      * @return mixed
      */
-    public static function curlPost($url, $param){
+    public static function curlPost($url, $param, $isJson = false){
         Log::info($url);
         Log::info($param);
-        $param  = json_encode($param);
+        if(!$isJson){
+            $param  = json_encode($param);
+        }
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch, CURLOPT_POST,1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
                 'Content-Type: application/json; charset=utf-8',
                 'Content-Length: ' . strlen($param))

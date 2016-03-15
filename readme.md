@@ -10,6 +10,7 @@
 ####2.获取AccessToken
 ####3.接收普通消息，并被动回复文本消息
 ####4.首次关注回复欢迎语
+####5.创建自定义菜单
 
 ##注意事项
 ####1.下载项目后将.env.example更名为.env
@@ -40,9 +41,19 @@ php artisan make:model Models/User/UserModel
 git rm --cached filename
 ```
 
+###更新代码后重载索引
+```
+php composer.phar dump-autoload
+```
+
 ##小工具
 ####在局域网内开发时，[ngrok](https://github.com/inconshreveable/ngrok)可以反向代理将内网端口映射到外网，生成一个临时域名
 ```
 git clone git@github.com:inconshreveable/ngrok.git
+```
 
+##URL示例
+####1.创建自定义菜单
+```
+http://340d798c.ngrok.io/createMenu
 ```

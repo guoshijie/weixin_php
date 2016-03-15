@@ -17,6 +17,7 @@ Route::any('/', function () {
 
 Route::any('/check', 'Weixin\CheckController@valid');
 Route::any('/getAccessToken', 'Weixin\AccessController@getAccessToken');
+Route::any('/createMenu', 'Weixin\MenuController@createMenu');
 
 /*
 |--------------------------------------------------------------------------
