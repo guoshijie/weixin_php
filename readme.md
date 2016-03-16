@@ -2,7 +2,7 @@
 ####这是一个微信公众平台开发示例,基于PHP框架Laravel5.2
 >- **IDE:** PhpStorm 9.0.2
 >- **PHP VERSION:** 5.6.7
->- **DATABASE:** Mysql 
+>- **DATABASE:** Mysql5.6 
 >- **Author:** Steven Guo
 
 ##包含功能
