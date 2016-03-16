@@ -109,7 +109,8 @@ class CheckController extends Controller{
             $respStr = "Hello, 我是郭世杰，2年JAVA开发经验。";
             return ResponseMsgService::responseTextMsg($fromUsername,$toUsername,$respStr);
         }else{
-
+            $respStr = "暂未设置，请尝试其它菜单";
+            return ResponseMsgService::responseTextMsg($fromUsername,$toUsername,$respStr);
         }
         return null;
     }
