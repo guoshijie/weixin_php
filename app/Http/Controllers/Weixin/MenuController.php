@@ -21,7 +21,7 @@ class MenuController extends Controller{
      */
     public function createMenu(){
         $res = $this->menuService->createMenu();
-        return response($res)->header('Content-Type', 'JSON');;
+        return response($res)->header('Content-Type', 'JSON');
     }
 
 }

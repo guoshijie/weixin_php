@@ -32,6 +32,11 @@ class MenuService {
      * 自定义菜单内容
      */
     public function generateMenu(){
+        $appid = Config::get('constants.AppID');
+        $scope = 'snsapi_info';
+        $state = '123';
+        $redirect_uri = urlencode('http://edumgmt.duobaohui.com:3001/');
+        $index_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=$appid&redirect_uri=$redirect_uri&response_type=code&scope=$scope&state=$state#wechat_redirect";
         $arr = array(
             'button' =>array(
                 array(
@@ -41,10 +46,10 @@ class MenuService {
                             'name'=>urlencode("拾谷网"),
                             'type'=>'view',
                             'key'=>'VCX_WEATHER',
-                            'url'=>'http://edumgmt.duobaohui.com:3001/'
+                            'url'=>$index_url
                         ),
                         array(
-                            'name'=>urlencode("身份证查询"),
+                            'name'=>urlencode("夺宝会"),
                             'type'=>'click',
                             'key'=>'VCX_IDENT'
                         )

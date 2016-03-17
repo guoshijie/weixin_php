@@ -25,9 +25,23 @@ class AccessTokenService {
         Log::info('AppSecret:'.$appSecret);
         $url = $AccessTokenUrl."?grant_type=client_credential&appid=$appId&secret=$appSecret";
         $res = HttpClientService::curlGet($url);
-        Log::info('Result:'.$res);
         $resObj = json_decode($res);
         $accessToken = $resObj->access_token;
         return $accessToken;
+    }
+
+    /**
+     * 通过code换取网页授权access_token
+     * getOAuth2AccessToken
+     * @param $code
+     * @return mixed
+     */
+    public static function getOAuth2AccessToken($code){
+        $appId = Config::get('constants.AppID');
+        $appSecret = Config::get('constants.AppSecret');
+        $url = Config::get('constants.OAuth2AccessTokenUrl');
+        $url = $url."?appid=$appId&secret=$appSecret&code=$code&grant_type=authorization_code";
+        $res = HttpClientService::curlGet($url);
+        return $res;
     }
 }

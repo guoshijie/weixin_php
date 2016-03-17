@@ -6,11 +6,17 @@
 >- **Author:** Steven Guo
 
 ##包含功能
-####1.微信公众平台接入
-####2.获取AccessToken
-####3.接收普通消息，并被动回复文本消息
-####4.首次关注回复欢迎语
-####5.创建自定义菜单
+>1.微信公众平台接入
+
+>2.获取AccessToken
+
+>3.接收普通消息，并被动回复文本消息
+
+>4.首次关注回复欢迎语
+
+>5.创建自定义菜单
+
+>6.通过code换取网页授权access_token
 
 ##注意事项
 ####1.下载项目后将.env.example更名为.env
@@ -55,7 +61,22 @@ git clone git@github.com:inconshreveable/ngrok.git
 ##URL示例
 ####1.创建自定义菜单
 ```
-http://340d798c.ngrok.io/createMenu
+http://fa408526.ngrok.io/createMenu
+```
+####2.通过code换取网页授权access_token
+```
+http://fa408526.ngrok.io/getOAuth2AccessToken?code=02113c9440d560824fd662a66e371b1u
+```
+返回示例
+
+```
+{
+    "access_token": "OezXcEiiBSKSxW0eoylIeLbTirX__QgA7uW8WJE0Z2izAbnXV7DHbdHni-j9OoCq2Xqh5gLlPt0uAHtfYByOH80h1dwMrq74iALd_K359JYEN5KWKB7_sEz3T19V86sP9lSO5ZGbc-qoXUD3XZjEPw",
+    "expires_in": 7200,
+    "refresh_token": "OezXcEiiBSKSxW0eoylIeLbTirX__QgA7uW8WJE0Z2izAbnXV7DHbdHni-j9OoCqgBFR_ApctbH4Tk5buv8Rr3zb7T3_27zZXWIdJrmbGFoFzGUfOvnwX249iPoeNJ2HYDbzW5sEfZHkC5zS4Qr8ug",
+    "openid": "oMzBIuI7ctx3n-kZZiixjchzBKLw",
+    "scope": "snsapi_base"
+}
 ```
 
 ##微信支付
