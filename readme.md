@@ -57,3 +57,6 @@ git clone git@github.com:inconshreveable/ngrok.git
 ```
 http://340d798c.ngrok.io/createMenu
 ```
+
+##微信支付
+![业务流程时序图](http://7xlbf0.com1.z0.glb.clouddn.com/weixin_pay.png)
