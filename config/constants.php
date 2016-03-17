@@ -44,6 +44,13 @@ return [
     | WeiXin CreateMenuUrl
     |--------------------------------------------------------------------------
     */
-    'CreateMenuUrl' => 'https://api.weixin.qq.com/cgi-bin/menu/create'
+    'CreateMenuUrl' => 'https://api.weixin.qq.com/cgi-bin/menu/create',
+
+    /*
+    |--------------------------------------------------------------------------
+    | 拉取用户信息(需scope为 snsapi_userinfo)
+    |--------------------------------------------------------------------------
+    */
+    'UserInfo' => 'https://api.weixin.qq.com/sns/userinfo?'
 
 ];
