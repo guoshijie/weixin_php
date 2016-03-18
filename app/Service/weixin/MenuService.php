@@ -33,7 +33,7 @@ class MenuService {
      */
     public function generateMenu(){
         $appid = Config::get('constants.AppID');
-        $scope = 'snsapi_info';
+        $scope = 'snsapi_base';
         $state = '123';
         $redirect_uri = urlencode('http://edumgmt.duobaohui.com:3001/');
         $index_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=$appid&redirect_uri=$redirect_uri&response_type=code&scope=$scope&state=$state#wechat_redirect";
@@ -87,8 +87,67 @@ class MenuService {
                 )
             )
         );
-        $jsondata = urldecode(json_encode($arr));
+//        $jsondata = urldecode(json_encode($arr));
+        $jsondata = urldecode(json_encode($this->getShiguMenuArray($index_url)));
         return $jsondata;
+    }
+
+    public function getShiguMenuArray($index_url){
+        $arr = array(
+            'button' =>array(
+                array(
+                    'name'=>urlencode("食材链"),
+                    'type'=>'view',
+                    'key'=>'VCX_WEATHER',
+                    'url'=>$index_url
+//                    'sub_button'=>array(
+//                        array(
+//                            'name'=>urlencode("拾谷网"),
+//                            'type'=>'view',
+//                            'key'=>'VCX_WEATHER',
+//                            'url'=>$index_url
+//                        ),
+//                        array(
+//                            'name'=>urlencode("夺宝会"),
+//                            'type'=>'click',
+//                            'key'=>'VCX_IDENT'
+//                        )
+//                    )
+                ),
+                array(
+                    'name'=>urlencode("产品介绍"),
+                    'sub_button'=>array(
+                        array(
+                            'name'=>urlencode("食材链"),
+                            'type'=>'click',
+                            'key'=>'VCX_GUAHAPPY'
+                        ),
+                        array(
+                            'name'=>urlencode("夺宝会"),
+                            'type'=>'click',
+                            'key'=>'VCX_LUCKPAN'
+                        )
+                    )
+                ),
+                array(
+                    'name'=>urlencode("关于我们"),
+                    'sub_button'=>array(
+                        array(
+                            'name'=>urlencode("联系我们"),
+                            'type'=>'click',
+                            'key'=>'me'
+                        ),
+                        array(
+                            'name'=>urlencode("企业文化"),
+                            'type'=>'click',
+                            'key'=>'VCX_JOBINFORMATION'
+                        )
+                    )
+                )
+            )
+        );
+
+        return $arr;
     }
 
 }
