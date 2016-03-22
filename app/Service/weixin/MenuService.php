@@ -35,7 +35,7 @@ class MenuService {
         $appid = Config::get('constants.AppID');
         $scope = 'snsapi_base';
         $state = '123';
-        $redirect_uri = urlencode('http://edumgmt.duobaohui.com:3001/');
+        $redirect_uri = urlencode('http://weixin.duobaohui.com/');
         $index_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=$appid&redirect_uri=$redirect_uri&response_type=code&scope=$scope&state=$state#wechat_redirect";
         $arr = array(
             'button' =>array(
