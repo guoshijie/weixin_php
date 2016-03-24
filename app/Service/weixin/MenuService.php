@@ -29,12 +29,24 @@ class MenuService {
     }
 
     /**
+     * 查询自定义菜单
+     */
+    public function getMenu(){
+        //GetMenuUrl
+        $accessToken = AccessTokenService::getAccessToken();
+        $url = Config::get('constants.GetMenuUrl');
+        $url = $url."?access_token=".$accessToken;
+        $res = HttpClientService::curlGet($url);
+        return $res;
+    }
+
+    /**
      * 自定义菜单内容
      */
     public function generateMenu(){
         $appid = Config::get('constants.AppID');
         $scope = 'snsapi_base';
-        $state = '123';
+        $state = 'gsj';
         $redirect_uri = urlencode('http://weixin.duobaohui.com/');
         $index_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=$appid&redirect_uri=$redirect_uri&response_type=code&scope=$scope&state=$state#wechat_redirect";
         $arr = array(

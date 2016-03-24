@@ -1,5 +1,5 @@
 ##项目简介
-####这是一个微信公众平台开发示例,基于PHP框架Laravel5.2
+####基于PHP框架Laravel5.2的微信公众平台开发示例
 >- **IDE:** PhpStorm 9.0.2
 >- **PHP VERSION:** 5.6.7
 >- **DATABASE:** Mysql5.6 
@@ -17,6 +17,8 @@
 >5.创建自定义菜单
 
 >6.通过code换取网页授权access_token
+
+>7.获取自定义菜单
 
 ##注意事项
 ####1.下载项目后将.env.example更名为.env
@@ -77,6 +79,11 @@ http://fa408526.ngrok.io/getOAuth2AccessToken?code=02113c9440d560824fd662a66e371
     "openid": "oMzBIuI7ctx3n-kZZiixjchzBKLw",
     "scope": "snsapi_base"
 }
+```
+
+####3.获取自定义菜单
+```
+http://fa408526.ngrok.io/getMenu
 ```
 
 ##微信支付

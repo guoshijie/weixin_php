@@ -24,4 +24,13 @@ class MenuController extends Controller{
         return response($res)->header('Content-Type', 'JSON');
     }
 
+    /**
+     * 获取自定义菜单
+     * @return mixed
+     */
+    public function getMenu(){
+        $res = $this->menuService->getMenu();
+        return response($res)->header('Content-Type', 'JSON');
+    }
+
 }
