@@ -108,7 +108,7 @@ class MenuService {
         $arr = array(
             'button' =>array(
                 array(
-                    'name'=>urlencode("食材链"),
+                    'name'=>urlencode("易成交"),
                     'type'=>'view',
                     'key'=>'VCX_WEATHER',
                     'url'=>$index_url
@@ -126,36 +126,36 @@ class MenuService {
 //                        )
 //                    )
                 ),
-                array(
-                    'name'=>urlencode("产品介绍"),
-                    'sub_button'=>array(
-                        array(
-                            'name'=>urlencode("食材链"),
-                            'type'=>'click',
-                            'key'=>'VCX_GUAHAPPY'
-                        ),
-                        array(
-                            'name'=>urlencode("夺宝会"),
-                            'type'=>'click',
-                            'key'=>'VCX_LUCKPAN'
-                        )
-                    )
-                ),
-                array(
-                    'name'=>urlencode("关于我们"),
-                    'sub_button'=>array(
-                        array(
-                            'name'=>urlencode("联系我们"),
-                            'type'=>'click',
-                            'key'=>'me'
-                        ),
-                        array(
-                            'name'=>urlencode("企业文化"),
-                            'type'=>'click',
-                            'key'=>'VCX_JOBINFORMATION'
-                        )
-                    )
-                )
+//                array(
+//                    'name'=>urlencode("产品介绍"),
+//                    'sub_button'=>array(
+//                        array(
+//                            'name'=>urlencode("食材链"),
+//                            'type'=>'click',
+//                            'key'=>'VCX_GUAHAPPY'
+//                        ),
+//                        array(
+//                            'name'=>urlencode("夺宝会"),
+//                            'type'=>'click',
+//                            'key'=>'VCX_LUCKPAN'
+//                        )
+//                    )
+//                ),
+//                array(
+//                    'name'=>urlencode("关于我们"),
+//                    'sub_button'=>array(
+//                        array(
+//                            'name'=>urlencode("联系我们"),
+//                            'type'=>'click',
+//                            'key'=>'me'
+//                        ),
+//                        array(
+//                            'name'=>urlencode("企业文化"),
+//                            'type'=>'click',
+//                            'key'=>'VCX_JOBINFORMATION'
+//                        )
+//                    )
+//                )
             )
         );
 
